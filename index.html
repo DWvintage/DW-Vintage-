@@ -1,67 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DW Vintage</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW Vintage</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="dw-vintage-logo.png" alt="DW Vintage Logo" class="logo" />
-    <h1>DW Vintage</h1>
-    <p>Your trusted store for quality used goods</p>
-  </header>
+    <header>
+        <img src="logo.png" alt="DW Vintage Logo" class="logo">
+        <h1>DW Vintage</h1>
+    </header>
 
-  <nav>
-    <ul>
-      <li><a href="#clothing">Clothing</a></li>
-      <li><a href="#electronics">Electronics</a></li>
-      <li><a href="#collectibles">Collectibles</a></li>
-      <li><a href="#photos">Old Photos</a></li>
-    </ul>
-  </nav>
+    <nav>
+        <ul>
+            <li><a href="#clothing">Clothing</a></li>
+            <li><a href="#electronics">Electronics</a></li>
+            <li><a href="#collectibles">Collectibles</a></li>
+            <li><a href="#photos">Old Photos</a></li>
+            <li><a href="#books">Books</a></li>
+            <li><a href="#magazines">Magazines</a></li>
+            <li><a href="#glassware">Glassware</a></li>
+            <li><a href="#art">Art</a></li>
+            <li><a href="#furniture">Furniture</a></li>
+            <li><a href="#cart">Cart</a></li>
+        </ul>
+    </nav>
 
-  <main>
-    <section id="clothing">
-      <h2>Clothing</h2>
-      <div class="item">
-        <img src="jacket.jpg" alt="Vintage Leather Jacket" />
-        <h3>Vintage Leather Jacket</h3>
-        <p>$80 - Australian-made Sujari leather, great condition</p>
-      </div>
-    </section>
+    <main>
+        <section id="clothing">
+            <h2>Clothing</h2>
+            <div class="item-grid">
+                <div class="item">
+                    <img src="placeholder.jpg" alt="Vintage Jacket">
+                    <p>Vintage Jacket - $30</p>
+                    <button onclick="addToCart('Vintage Jacket', 30)">Add to Cart</button>
+                </div>
+            </div>
+        </section>
 
-    <section id="electronics">
-      <h2>Electronics</h2>
-      <div class="item">
-        <img src="rockman.jpg" alt="Rockman Bass Headphone Amp" />
-        <h3>Rockman Bass Headphone Amp</h3>
-        <p>$150 - With original box, excellent condition</p>
-      </div>
-    </section>
+        <!-- Add other categories here similarly -->
 
-    <section id="collectibles">
-      <h2>Collectibles</h2>
-      <div class="item">
-        <img src="beer-glasses.jpg" alt="Australian Beer Glass Set" />
-        <h3>Crown Beer Glass Set</h3>
-        <p>$40 - 6-piece set in original box, excellent for collectors</p>
-      </div>
-    </section>
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: $<span id="cart-total">0</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </section>
 
-    <section id="photos">
-      <h2>Old Photos</h2>
-      <div class="item">
-        <img src="vintage-photo1.jpg" alt="Old Postcard" />
-        <h3>Postcard - 1980s UK Political Art</h3>
-        <p>$12 - Leeds Postcards, Thatcher-era satire</p>
-      </div>
-    </section>
-  </main>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <label>Email: Dylanwamsley809@gmail.com</label><br>
+                <label>Phone: 0409855853</label>
+            </form>
+        </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 DW Vintage. All rights reserved.</p>
-  </footer>
+    <footer>
+        <p>&copy; 2025 DW Vintage</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById("cart-items");
+            let total = 0;
+            cartList.innerHTML = '';
+            cart.forEach(entry => {
+                let li = document.createElement("li");
+                li.textContent = entry.item + " - $" + entry.price;
+                cartList.appendChild(li);
+                total += entry.price;
+            });
+            document.getElementById("cart-total").textContent = total;
+        }
+
+        function checkout() {
+            alert("Checkout placeholder – integrate PayPal, Stripe, or other payment here.");
+        }
+    </script>
 </body>
 </html>
